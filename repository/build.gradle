@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24 rc4"
 
     defaultConfig {
-        applicationId "com.yninfo.base.data"
-        minSdkVersion 15
-        targetSdkVersion 23
+        applicationId rootProject.ext.applicationId+".repository"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -17,11 +23,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
-
+def dbflow_version = "3.0.0-beta6"
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile rootProject.ext.libSupportAppcompat
+    compile rootProject.ext.libSupportDesign
+    compile rootProject.ext.libSupportRecyclerview
+    compile rootProject.ext.libSupportV4
+    compile rootProject.ext.libRetrofit
+    compile rootProject.ext.libRetrofitConverterGson
+    compile rootProject.ext.libRetrofitAdapterRxJava
+    compile rootProject.ext.libOkHttpLoggingInterceptor
+    compile rootProject.ext.libRxAndroid
+    compile rootProject.ext.libRxJava
+
+    compile 'com.github.orhanobut:logger:1.12'
+
+    //DBFlow
+ //   apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+    // sql-cipher database encyrption (optional)
+    compile "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
 }

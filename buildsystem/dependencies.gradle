@@ -1,0 +1,27 @@
+def retrofitVersion = "2.0.2"
+def okHttpVersion = '3.2.0'
+def supportVersion = '23.3.0'
+
+project.ext {
+    applicationId = "com.yninfo.base"
+    buildToolsVersion = "23.0.3"
+    compileSdkVersion = 23
+    minSdkVersion = 14
+    targetSdkVersion = 23
+
+    libSupportAppcompat = "com.android.support:appcompat-v7:${supportVersion}"
+    libSupportDesign = "com.android.support:design:${supportVersion}"
+    libSupportRecyclerview = "com.android.support:recyclerview-v7:${supportVersion}"
+    libSupportCardView = "com.android.support:cardview-v7:$supportVersion"
+    libSupportV4 = "com.android.support:support-v4:${supportVersion}"
+    libSupportAnnotations = "com.android.support:support-annotations:$supportVersion"
+
+
+    libRetrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    libRetrofitConverterGson = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    libRetrofitAdapterRxJava = "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    libOkHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+
+    libRxAndroid = "io.reactivex:rxandroid:1.1.0"
+    libRxJava = "io.reactivex:rxjava:1.1.1"
+}
